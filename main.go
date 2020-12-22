@@ -1,7 +1,7 @@
 package main
 
 import (
-	"testapi/methods"
+	"testapi/handlers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -15,8 +15,9 @@ func main() {
 	server.Use(middleware.Recover())
 
 	// routes
-	server.GET("/data", methods.DataGet)
-	server.File("/favicon.ico", "/favicon.ico") // hate favicon 404 error
+	server.GET("/data", handlers.DataGet)
+	server.POST("/data", handlers.DataPost)
+	server.File("/favicon.ico", "/favicon.ico") // just hate favicon 404 error
 
 	// start server
 	server.Logger.Fatal(server.Start(":8080"))
